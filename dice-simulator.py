@@ -1,14 +1,11 @@
-from tkinter import *
+from tkinter import Tk, Button, Label
 import random
 from time import sleep
 
 
 # Function to handle the rolling of dice
 def roll():
-    # List of all faces
-    faces = list(dice.values())
-
-    # Shuffles a given list
+    # Shuffles the given list
     random.shuffle(faces)
 
     # Iterate through the faces to simulate a rolling dice
@@ -28,23 +25,33 @@ def roll():
 
 
 # A dictionary to store dice faces in unicode
-dice = {
-    1: "\u2680",
-    2: "\u2681",
-    3: "\u2682",
-    4: "\u2683",
-    5: "\u2684",
-    6: "\u2685"
-}
+faces = [
+    "\u2680",
+    "\u2681",
+    "\u2682",
+    "\u2683",
+    "\u2684",
+    "\u2685"
+]
 
 parent = Tk()
 parent.title("🎲 Dice Simulator 🎲")
 parent.configure(background="black")
 
-parent.geometry("300x200+500+200")
+# Dynamically sets the position of the window to center of screen,
+# according to the current screen resolution
+res_x = parent.winfo_screenwidth()
+res_y = parent.winfo_screenheight()
+width = 300
+height = 200
+x = (res_x-width) // 2
+y = (res_y-height) // 2
+
+parent.geometry(f"{width}x{height}+{x}+{y}")
 # Make the window resizable
 parent.resizable(False, False)
 
+# Create roll button
 roll_button = Button(
     parent,
     text="Roll",
@@ -59,11 +66,11 @@ roll_button = Button(
     highlightthickness=2,
     command=roll
 )
-
 roll_button.pack(padx=10, pady=15)
 
+# Create a label to show dice face
 rolled = Label(parent, font=("times", 120), bg="black")
-rolled.configure(text=random.choice(dice), fg="green")
+rolled.configure(text=random.choice(faces), fg="green")
 rolled.pack()
 
 parent.mainloop()
