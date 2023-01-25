@@ -3,25 +3,38 @@ import random
 from time import sleep, time
 
 
+# Function to handle the rolling of dice
 def roll():
-    die = random.randrange(1, 7)
+    # List of all faces
     faces = list(dice.values())
+
+    # Shuffles a given list
     random.shuffle(faces)
 
+    # Iterate through the faces to simulate a rolling dice
     for face in faces:
+        # Change the rolled label and update the parent window to apply the changes
         rolled.configure(text=face, fg="red")
         rolled.pack()
-        root.update()
+        parent.update()
 
+        # Animation delay
         sleep(0.13)
 
-    rolled.configure(text=f"{dice[die]}", fg="green")
+    # Finally, choose a random die face
+    rolled.configure(text=random.choice(faces), fg="green")
     rolled.pack()
-    root.update()
+    parent.update()
 
 
+# Set a seed according to current time (unix time i.e. epoch)
+# This makes it so that the seed changes every time you run the program,
+# and you will get truly random numbers everytime
+# Using bare randrange() function without seed() will cause repetition of
+# the random values which means it won't be truly random anymore
 random.seed(time())
 
+# A dictionary to store dice faces in unicode
 dice = {
     1: "\u2680",
     2: "\u2681",
@@ -31,15 +44,16 @@ dice = {
     6: "\u2685"
 }
 
-root = Tk()
-root.title("🎲 Dice Simulator 🎲")
-root.configure(background="black")
+parent = Tk()
+parent.title("🎲 Dice Simulator 🎲")
+parent.configure(background="black")
 
-root.geometry("300x200+500+200")
-root.resizable(False, False)
+parent.geometry("300x200+500+200")
+# Make the window resizable
+parent.resizable(False, False)
 
 roll_button = Button(
-    root,
+    parent,
     text="Roll",
     width=10,
     height=2,
@@ -55,8 +69,8 @@ roll_button = Button(
 
 roll_button.pack(padx=10, pady=15)
 
-rolled = Label(root, font=("times", 120), bg="black")
-rolled.configure(text=f"{dice[random.randrange(1, 7)]}", fg="green")
+rolled = Label(parent, font=("times", 120), bg="black")
+rolled.configure(text=random.choice(dice), fg="green")
 rolled.pack()
 
-root.mainloop()
+parent.mainloop()
