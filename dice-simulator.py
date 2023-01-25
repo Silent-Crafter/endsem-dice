@@ -1,6 +1,6 @@
 from tkinter import *
 import random
-from time import sleep, time
+from time import sleep
 
 
 # Function to handle the rolling of dice
@@ -26,13 +26,6 @@ def roll():
     rolled.pack()
     parent.update()
 
-
-# Set a seed according to current time (unix time i.e. epoch)
-# This makes it so that the seed changes every time you run the program,
-# and you will get truly random numbers everytime
-# Using bare randrange() function without seed() will cause repetition of
-# the random values which means it won't be truly random anymore
-random.seed(time())
 
 # A dictionary to store dice faces in unicode
 dice = {
