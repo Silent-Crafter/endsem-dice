@@ -1,6 +1,7 @@
-from tkinter import Tk, Button, Label
+#!/usr/bin/python3
 import random
 from time import sleep
+from tkinter import Tk, Button, Label
 
 
 # Function to handle the rolling of dice
@@ -35,7 +36,7 @@ faces = [
 ]
 
 parent = Tk()
-parent.title("🎲 Dice Simulator 🎲")
+parent.title("Dice Simulator")
 parent.configure(background="black")
 
 # Dynamically sets the position of the window to center of screen,
@@ -44,8 +45,8 @@ res_x = parent.winfo_screenwidth()
 res_y = parent.winfo_screenheight()
 width = 300
 height = 200
-x = (res_x-width) // 2
-y = (res_y-height) // 2
+x = (res_x - width) // 2
+y = (res_y - height) // 2
 
 parent.geometry(f"{width}x{height}+{x}+{y}")
 # Make the window resizable
