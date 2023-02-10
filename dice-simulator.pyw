@@ -50,7 +50,7 @@ y = (res_y - height) // 2
 
 parent.geometry(f"{width}x{height}+{x}+{y}")
 # Make the window resizable
-parent.resizable(False, False)
+#parent.resizable(False, False)
 
 # Create roll button
 roll_button = Button(
